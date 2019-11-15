@@ -14,30 +14,32 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class MainTest {
 
-    static String browser;
+    public static String browser;
     static WebDriver driver;
     static String projectLocation = System.getProperty("user.dir");
 
     public static void main(String[] args) {
-        getBrowser();
-        getBrowserConfig();
+//        setBrowser();
+        PropertiesFile.readPropertiesFile();
+        setBrowserConfig();
         runtTest();
+        PropertiesFile.writePropertiesFile();
     }
 
-    public static void getBrowser() {
-        browser = "Chrome";
-    }
+//    public static void setBrowser() {
+//        browser = "Firefox";
+//    }
 
-    public static void getBrowserConfig() {
+    public static void setBrowserConfig() {
 
         // this condition block sets config for firefox browser
-        if(browser=="Firefox") {
+        if(browser.contains("Firefox")) {
             System.setProperty("webdriver.gecko.driver", projectLocation+"\\lib\\geckodriver\\geckodriver.exe");
             driver = new FirefoxDriver();
         }
 
         // this condition block sets config for chrome browser
-        if(browser=="Chrome") {
+        if(browser.contains("Chrome")) {
             System.setProperty("webdriver.chrome.driver", projectLocation+"\\lib\\chromedriver\\chromedriver.exe");
             driver = new ChromeDriver();
         }

@@ -17,10 +17,11 @@ public class PropertiesFile {
     public static void readPropertiesFile() {
 
         try {
-            InputStream input = new FileInputStream("C:\\Users\\JanAs\\IdeaProjects\\SeleniumTesting1\\src\\config\\config.properties");
+            InputStream input = new FileInputStream("C:\\Users\\JanAs\\IdeaProjects\\JavaSeleniumRecap\\src\\config\\config.properties");
             prop.load(input);
             prop.getProperty("browser");
-            System.out.println(prop.getProperty("browser"));
+            MainTest.browser = prop.getProperty("browser");
+            System.out.println(MainTest.browser);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,7 +31,7 @@ public class PropertiesFile {
     public static void writePropertiesFile() {
 
         try {
-            OutputStream output = new FileOutputStream("C:\\Users\\JanAs\\IdeaProjects\\SeleniumTesting1\\src\\config\\config.properties");
+            OutputStream output = new FileOutputStream("C:\\Users\\JanAs\\IdeaProjects\\JavaSeleniumRecap\\src\\config\\config.properties");
             prop.setProperty("browser", "Chrome");
             prop.store(output, null);
             System.out.println(prop.getProperty("browser"));
